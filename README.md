@@ -6,7 +6,7 @@ Restful API for our React-Native / Redux project for the web course. UVG 2020
 <p>Amado Garcia</p>
 <p>Sara Zavala</p>
 
-### Libraries
+## Libraries
 <ul>
 <li> Django </li>
 <li> Django Rest Framework </li>
