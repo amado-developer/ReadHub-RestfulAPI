@@ -41,8 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'guardian',
     'corsheaders',
-<<<<<<< HEAD
-    'books.apps.BooksConfig',
+
     'equipments.apps.EquipmentsConfig',
     'magazines.apps.MagazinesConfig',
     'comments.apps.CommentsConfig',
@@ -52,8 +51,8 @@ INSTALLED_APPS = [
     'digital_books.apps.DigitalBooksConfig',
     'audio_books.apps.AudioBooksConfig',
     'promotions.apps.PromotionsConfig',
-    'studyclassrooms_reservations.apps.StudyclassroomsReservationsConfig'
-=======
+    'studyclassrooms_reservations.apps.StudyclassroomsReservationsConfig',
+
   
     'books.apps.BooksConfig',
     'authors.apps.AuthorsConfig',
@@ -66,7 +65,7 @@ INSTALLED_APPS = [
     'magazinecollections.apps.MagazinecollectionsConfig',
     'events.apps.EventsConfig',
     'wishlists.apps.WishlistsConfig',
->>>>>>> 8a1d7a51a278dfa293e689b43fdbcdb7c18a8e1d
+
 
 ]
 
