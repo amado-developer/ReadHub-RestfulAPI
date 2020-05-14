@@ -1,23 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager, UserManager
 
-'''
-
-first_name (varchar 50) null = false
-last_name (varchar 50) null = false
-user_name (varchar 50) null = false
-password (varchar 20) null = false
-is_employee (boolean) null = true
-picture
-age
-gender
-occupation
-address line 1
-address line 2  (optional)
-phone_number
-description
-
-'''
 class User(AbstractBaseUser):
     email           = models.EmailField(unique=True)
     first_name      = models.CharField(max_length=50, null=False)

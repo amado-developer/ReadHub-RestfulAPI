@@ -22,10 +22,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
             'phone_number',
             'description',
         )
-
-        
+  
         extra_kwargs = {
-            'password' :{'write_only' : True }
+            'password' :{'write_only' : True },
         }
 
     def save(self):
@@ -50,5 +49,5 @@ class RegistrationSerializer(serializers.ModelSerializer):
         if password != password2:
             raise serializers.ValidationError({'password' : 'Passwords must match'})
         user.set_password(password)
-        user.save()
+        user.save() 
         return user
