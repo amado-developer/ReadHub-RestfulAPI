@@ -40,7 +40,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'guardian',
     'corsheaders',
-    'books.apps.BooksConfig'
+    'books.apps.BooksConfig',
+    'equipments.apps.EquipmentsConfig',
+    'magazines.apps.MagazinesConfig',
+    'comments.apps.CommentsConfig',
+    'storebranches.apps.StorebranchesConfig',
+    'studyclassrooms.apps.StudyclassroomsConfig',
+    'equipment_assigments.apps.EquipmentAssigmentsConfig',
+    'digital_books.apps.DigitalBooksConfig',
+    'audio_books.apps.AudioBooksConfig',
+    'promotions.apps.PromotionsConfig',
+    'studyclassrooms_reservations.apps.StudyclassroomsReservationsConfig'
+
 ]
 
 REST_FRAMEWORK = {
