@@ -40,12 +40,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'guardian',
     'corsheaders',
-    'books.apps.BooksConfig'
+  
+
+    'books.apps.BooksConfig',
+    'authors.apps.AuthorsConfig',
+    'users.apps.UsersConfig',
 ]
+
+AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -53,7 +59,7 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-
+'JWT_ALLOW_REFRESH' : True,
 'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=24),
 'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
@@ -68,6 +74,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = (

@@ -17,13 +17,23 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
-
 from books.views import BookViewSet
+from users.views import RegistrationViewSet
+from rest_framework_jwt.views import (
+    obtain_jwt_token, 
+    refresh_jwt_token
+)
 
+app_name = "users"
 router = routers.DefaultRouter()
 router.register(r'^Books', BookViewSet)
+router.register(r'^Register', RegistrationViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^api/token-auth/', obtain_jwt_token),
+
+    url(r'^api/token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls)),
 ]

@@ -3,12 +3,17 @@ from books.models import Book
 
 '''
 
-name varchar 50
-author varchar 50
-publisher varchar 50
-edition integer
-release_date date
-ISBN varchar 25
+name (varchar 50) (null = false)
+author (FK) 
+publisher (varchar 50) (null = true)
+language (varchar 25)
+edition (integer) (null = true)
+release_date (date) (null = true)
+isbn (varchar 25) (null = false)
+for_sale true (null = false)
+price (float)
+quantity 10 (null = true)
+
 
 '''
 class BookSerializer(serializers.ModelSerializer):
@@ -22,5 +27,8 @@ class BookSerializer(serializers.ModelSerializer):
             'edition',
             'release_date',
             'isbn',
+            'for_sale',
+            'price',
+            'quantity'
         )
         
