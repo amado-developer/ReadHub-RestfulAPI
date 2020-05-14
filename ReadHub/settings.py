@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'guardian',
     'corsheaders',
+<<<<<<< HEAD
     'books.apps.BooksConfig',
     'equipments.apps.EquipmentsConfig',
     'magazines.apps.MagazinesConfig',
@@ -51,12 +53,41 @@ INSTALLED_APPS = [
     'audio_books.apps.AudioBooksConfig',
     'promotions.apps.PromotionsConfig',
     'studyclassrooms_reservations.apps.StudyclassroomsReservationsConfig'
+=======
+  
+    'books.apps.BooksConfig',
+    'authors.apps.AuthorsConfig',
+    'users.apps.UsersConfig',
+
+    'logs.apps.LogsConfig',
+    'adquisitions.apps.AdquisitionsConfig',
+    'bookcollections.apps.BookcollectionsConfig',
+    'electronicbookcollections.apps.ElectronicbookcollectionsConfig',
+    'magazinecollections.apps.MagazinecollectionsConfig',
+    'events.apps.EventsConfig',
+    'wishlists.apps.WishlistsConfig',
+>>>>>>> 8a1d7a51a278dfa293e689b43fdbcdb7c18a8e1d
 
 ]
 
+AUTH_USER_MODEL = 'users.User'
+
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/?verification=1'
+# ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/?verification=1'
+# SITE_ID = 1
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -64,7 +95,7 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-
+'JWT_ALLOW_REFRESH' : True,
 'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=24),
 'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
@@ -79,6 +110,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = (

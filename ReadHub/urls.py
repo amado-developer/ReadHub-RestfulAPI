@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from rest_framework import routers
-
 from books.views import BookViewSet
+<<<<<<< HEAD
 from comments.views import CommentViewSet
 from equipments.views import EquipmentViewSet
 from magazines.views import MagazineViewSet
@@ -29,9 +29,18 @@ from audio_books.views import Audio_BookViewSet
 from promotions.views import PromotionViewSet
 from equipment_assigments.views import Equipment_AssigmentViewSet
 from studyclassrooms_reservations.views import StudyClassrooms_ReservationViewSet
+=======
+from users.views import RegistrationViewSet
+from rest_framework_jwt.views import (
+    obtain_jwt_token, 
+    refresh_jwt_token
+)
+>>>>>>> 8a1d7a51a278dfa293e689b43fdbcdb7c18a8e1d
 
+app_name = "users"
 router = routers.DefaultRouter()
 router.register(r'^Books', BookViewSet)
+<<<<<<< HEAD
 router.register(r'^Comments', CommentViewSet)
 router.register(r'^Equipments', EquipmentViewSet)
 router.register(r'^Magazines', MagazineViewSet)
@@ -44,8 +53,15 @@ router.register(r'^Equipment_Assigments', Equipment_AssigmentViewSet)
 router.register(r'^StudyClassrooms_Reservations', StudyClassrooms_ReservationViewSet)
 
 
+=======
+router.register(r'^Register', RegistrationViewSet)
+>>>>>>> 8a1d7a51a278dfa293e689b43fdbcdb7c18a8e1d
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^api/token-auth/', obtain_jwt_token),
+
+    url(r'^api/token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls)),
 ]
