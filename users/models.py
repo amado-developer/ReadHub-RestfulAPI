@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager, UserManager
 
+
 class User(AbstractBaseUser):
     email           = models.EmailField(unique=True)
     first_name      = models.CharField(max_length=50, null=False)
     last_name       = models.CharField(max_length=50, null=False)
-    is_employee     = models.BooleanField(default=False)
     profile_picture = models.ImageField(max_length=50, null=True)
     age             = models.IntegerField(null=True)
     gender          = models.CharField(max_length=50, null=True)

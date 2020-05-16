@@ -28,8 +28,10 @@ from audio_books.views import Audio_BookViewSet
 from promotions.views import PromotionViewSet
 from equipment_assigments.views import Equipment_AssigmentViewSet
 from studyclassrooms_reservations.views import StudyClassrooms_ReservationViewSet
-
+from authors.views import AuthorViewSet;
 from users.views import RegistrationViewSet
+from inventories.views import InventoryViewset
+from adquisitions.views import CollectionViewset
 from rest_framework_jwt.views import (
     obtain_jwt_token, 
     refresh_jwt_token
@@ -38,19 +40,21 @@ from rest_framework_jwt.views import (
 
 app_name = "users"
 router = routers.DefaultRouter()
-router.register(r'^Books', BookViewSet)
-router.register(r'^Comments', CommentViewSet)
-router.register(r'^Equipments', EquipmentViewSet)
-router.register(r'^Magazines', MagazineViewSet)
-router.register(r'^StoreBranches',StoreBrachViewSet)
-router.register(r'^Digital_Books', digital_bookViewSet)
-router.register(r'^StudyClassrooms', StudyClassrooomViewSets)
-router.register(r'^Audio_Books', Audio_BookViewSet)
-router.register(r'^Promotions', PromotionViewSet)
-router.register(r'^Equipment_Assigments', Equipment_AssigmentViewSet)
-router.register(r'^StudyClassrooms_Reservations', StudyClassrooms_ReservationViewSet)
-router.register(r'^Register', RegistrationViewSet)
-
+router.register(r'^books', BookViewSet)
+router.register(r'^comments', CommentViewSet)
+router.register(r'^equipments', EquipmentViewSet)
+router.register(r'^magazines', MagazineViewSet)
+router.register(r'^storeBranches',StoreBrachViewSet)
+router.register(r'^digital-books', digital_bookViewSet)
+router.register(r'^studyclassrooms', StudyClassrooomViewSets)
+router.register(r'^audio-books', Audio_BookViewSet)
+router.register(r'^promotions', PromotionViewSet)
+router.register(r'^equipment-assigments', Equipment_AssigmentViewSet)
+router.register(r'^studyclassrooms-reservations', StudyClassrooms_ReservationViewSet)
+router.register(r'^register', RegistrationViewSet)
+router.register(r'^authors',AuthorViewSet)
+router.register(r'^inventory', InventoryViewset)
+router.register(r'^collections/add-to-collection',CollectionViewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

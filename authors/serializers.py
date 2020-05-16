@@ -19,7 +19,7 @@ class AuthorSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'age',
-            'genre',
+            'gender',
             'pseudonym',
             'nationality'
         )
