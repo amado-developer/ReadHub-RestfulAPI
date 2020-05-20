@@ -29,14 +29,16 @@ from promotions.views import PromotionViewSet
 from equipment_assigments.views import Equipment_AssigmentViewSet
 from studyclassrooms_reservations.views import StudyClassrooms_ReservationViewSet
 from authors.views import AuthorViewSet;
-from users.views import RegistrationViewSet
+from users.views import registration_view, users_view, upload_profile_picture
 from inventories.views import InventoryViewset
 from adquisitions.views import CollectionViewset
 from rest_framework_jwt.views import (
     obtain_jwt_token, 
     refresh_jwt_token
 )
-
+from rest_framework.urlpatterns import format_suffix_patterns
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = "users"
 router = routers.DefaultRouter()
@@ -51,16 +53,24 @@ router.register(r'^audio-books', Audio_BookViewSet)
 router.register(r'^promotions', PromotionViewSet)
 router.register(r'^equipment-assigments', Equipment_AssigmentViewSet)
 router.register(r'^studyclassrooms-reservations', StudyClassrooms_ReservationViewSet)
-router.register(r'^register', RegistrationViewSet)
+
 router.register(r'^authors',AuthorViewSet)
 router.register(r'^inventory', InventoryViewset)
 router.register(r'^collections/add-to-collection',CollectionViewset)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^api/v1/register', registration_view, name="register"),
+    url(r'^api/v1/users/', users_view, name="users"),
+    url(r'^api/v1/user/(?P<pk>\d+)/$', users_view, name="user"),
+    url(r'^api/v1/user/upload-profile-picture/(?P<pk>\d+)/$', upload_profile_picture, name="profile-pic"),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/token-auth/', obtain_jwt_token),
-
     url(r'^api/token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls)),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

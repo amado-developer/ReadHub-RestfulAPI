@@ -25,9 +25,9 @@ SECRET_KEY = 'c_m7(8ins*x$$m*5qm^z%j8d5eklh)dr&u890hy$f@t@r$xj^!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.2.2', 'localhost']
 
-
+CORS_ORIGIN_ALLOW_ALL =  True
 # Application definition
 
 
@@ -39,6 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth',
+    'rest_auth.registration',
     'guardian',
     'corsheaders',
 
@@ -66,6 +72,7 @@ INSTALLED_APPS = [
     'events.apps.EventsConfig',
     'wishlists.apps.WishlistsConfig',
     'inventories.apps.InventoriesConfig',
+
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -74,7 +81,7 @@ AUTH_USER_MODEL = 'users.User'
 # ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_USERNAME_REQUIRED = False
-# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_AUTHENTICATION_METHOD = None
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 # ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/?verification=1'
@@ -82,6 +89,9 @@ AUTH_USER_MODEL = 'users.User'
 # SITE_ID = 1
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# REST_AUTH_SERIALIZERS = {
+#     'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer',
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -193,3 +203,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static-server', 'media_root')
+MEDIA_URL = '/media/'

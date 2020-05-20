@@ -6,7 +6,7 @@ class User(AbstractBaseUser):
     email           = models.EmailField(unique=True)
     first_name      = models.CharField(max_length=50, null=False)
     last_name       = models.CharField(max_length=50, null=False)
-    profile_picture = models.ImageField(max_length=50, null=True)
+    profile_picture = models.ImageField(null=True)
     age             = models.IntegerField(null=True)
     gender          = models.CharField(max_length=50, null=True)
     occupation      = models.CharField(max_length=50, null=True)
