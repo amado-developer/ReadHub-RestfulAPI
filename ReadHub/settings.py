@@ -25,7 +25,7 @@ SECRET_KEY = 'c_m7(8ins*x$$m*5qm^z%j8d5eklh)dr&u890hy$f@t@r$xj^!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2', 'localhost']
+ALLOWED_HOSTS = ['192.168.1.255', '10.120.61.149', '10.0.2.2', 'localhost', '127.0.0.1', '192.168.1.6', '192.168.1.5']
 
 CORS_ORIGIN_ALLOW_ALL =  True
 # Application definition
@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'events.apps.EventsConfig',
     'wishlists.apps.WishlistsConfig',
     'inventories.apps.InventoriesConfig',
+    'permissions.apps.PermissionsConfig',
 
 ]
 
@@ -95,7 +96,7 @@ AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -204,5 +205,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static-server', 'media_root')
+# MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'static-server', 'media_root')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'

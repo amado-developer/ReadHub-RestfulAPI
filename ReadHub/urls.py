@@ -13,6 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
@@ -29,7 +33,8 @@ from promotions.views import PromotionViewSet
 from equipment_assigments.views import Equipment_AssigmentViewSet
 from studyclassrooms_reservations.views import StudyClassrooms_ReservationViewSet
 from authors.views import AuthorViewSet;
-from users.views import registration_view, users_view, upload_profile_picture
+# from users.views import registration_view, users_view, upload_profile_picture, user_view
+from users.views import UserViewset
 from inventories.views import InventoryViewset
 from adquisitions.views import CollectionViewset
 from rest_framework_jwt.views import (
@@ -53,24 +58,21 @@ router.register(r'^audio-books', Audio_BookViewSet)
 router.register(r'^promotions', PromotionViewSet)
 router.register(r'^equipment-assigments', Equipment_AssigmentViewSet)
 router.register(r'^studyclassrooms-reservations', StudyClassrooms_ReservationViewSet)
-
 router.register(r'^authors',AuthorViewSet)
 router.register(r'^inventory', InventoryViewset)
-router.register(r'^collections/add-to-collection',CollectionViewset)
+router.register(r'^collections/add-to-collection' ,CollectionViewset)
+router.register(r'^users', UserViewset)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/v1/register', registration_view, name="register"),
-    url(r'^api/v1/users/', users_view, name="users"),
-    url(r'^api/v1/user/(?P<pk>\d+)/$', users_view, name="user"),
-    url(r'^api/v1/user/upload-profile-picture/(?P<pk>\d+)/$', upload_profile_picture, name="profile-pic"),
+    # url(r'^api/v1/register', registration_view, name="register"),
+    # url(r'^api/v1/users/$', users_view, name="users"),
+    # url(r'^api/v1/users/(?P<pk>\d+)/$', user_view, name="user"),
+    # url(r'^api/v1/users/upload-profile-picture/(?P<pk>\d+)/$', upload_profile_picture, name="profile-pic"),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/token-auth/', obtain_jwt_token),
     url(r'^api/token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls)),
-]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

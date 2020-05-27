@@ -8,5 +8,5 @@ class InventorySerializer(serializers.ModelSerializer):
             'id',
             'for_sale',
             'price',
-            'book'
+            'digital_book'
         )

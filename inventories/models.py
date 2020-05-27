@@ -3,8 +3,8 @@ from django.db import models
 class Inventory(models.Model):
     for_sale = models.BooleanField(default=True)
     price    = models.FloatField(null=False)
-    book     = models.ForeignKey(
-        to='books.Book', on_delete=models.CASCADE
+    digital_book     = models.ForeignKey(
+        to='digital_books.digital_book', on_delete=models.CASCADE, default=0
     )
 
 class Meta:

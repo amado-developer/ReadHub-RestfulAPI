@@ -18,8 +18,9 @@ class digital_book(models.Model):
     language = models.CharField(max_length=50, null=False)
     publisher = models.CharField(max_length=50, null=False)
     edition =  models.PositiveIntegerField()
-    release_date = models.DateTimeField(auto_now=False)
-    price = models.PositiveIntegerField()
+    release_date = models.DateField(auto_now=False)
+    price = models.DecimalField(decimal_places=2, max_digits=6)
     doi = models.CharField(max_length=50, null=False)
+    cover = models.ImageField(null=False, default='')
 
 

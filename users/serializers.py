@@ -4,7 +4,7 @@ from adquisitions.models import Collection
 from adquisitions.serializers import CollectionSerializer
 import uuid
 from rest_framework import permissions
-class RegistrationSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'inpute_type' : 'password'}, write_only=True)
     class Meta:
         model = User
@@ -29,14 +29,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             'password' :{'write_only' : True },
         }
 
-    def save(self):
-        print(self.data['email'])
-        if self.data['email'] is None:
-              user = User.objects.get(pk=self.data['id'])
-              user.profile_picture = self.validated_data['profile_picture']
-              user.save()
-              return user
-        
+    def save(self):      
         user = User(
         email=self.data['email'],
         first_name = self.data['first_name'],
@@ -50,16 +43,13 @@ class RegistrationSerializer(serializers.ModelSerializer):
         phone_number = self.data['phone_number'],
         description = self.data['description'],
      )
-
-        
-            
-    
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
 
         if password != password2:
             raise serializers.ValidationError({'password' : 'Passwords must match'})
         user.set_password(password)
+    
         user.save() 
 
         return user
