@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from digital_books.models import digital_book
+from digital_books.models import Digital_Book
 
 class digital_bookSerializer(serializers.ModelSerializer):
+    author = serializers.SerializerMethodField()
     class Meta:
-        model = digital_book
+        model = Digital_Book
         fields = (
             'id',
             'name',
@@ -16,3 +17,6 @@ class digital_bookSerializer(serializers.ModelSerializer):
             'doi',
             'cover',
         )
+
+    def get_author(self, obj):
+        return obj.author.pseudonym

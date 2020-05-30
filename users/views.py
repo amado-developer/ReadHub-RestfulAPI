@@ -7,8 +7,9 @@ from .models import User
 from rest_framework.parsers import MultiPartParser, FormParser, FileUploadParser, JSONParser
 from django.core.files.base import ContentFile
 from permissions.services import APIPermissionClassFactory
+from rest_framework.decorators import action
 
-def isLogged(user, obj, request):
+def is_logged(user, obj, request):
     # print(obj.email)
     return user.email == obj.email
     # return True
@@ -26,13 +27,30 @@ class UserViewset(viewsets.ModelViewSet):
                     'list': False,
                 },
                 'instance': {
-                    'retrieve': isLogged,
+                    'retrieve': is_logged,
                     'destroy': False,
-                    'update': True,
+                    'update': is_logged,
+                    'add-to-balance': is_logged,
+                    'get_user_data' : is_logged,
                 }
             }
         ),
     )
+    
+    @action(detail=True, url_path='add-to-balance', methods=['patch'])
+    def add_to_balance(self, request, pk=None):
+        user = self.get_object()
+        user.balance = request.data['balance']
+        user.save()
+        return Response({
+            'status': 'Balance Added'
+        })
+
+    @action(detail=True, url_path='get-data', methods=['get'])
+    def get_user_data(self, request, pk=None):
+         user = self.get_object()
+         return Response(UserSerializer(user).data)
+    
 # import base64
 # @api_view(['POST'])
 # @permission_classes([permissions.AllowAny])

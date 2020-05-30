@@ -12,9 +12,9 @@ doi (varchar 25)
 
 '''
 
-class digital_book(models.Model):
+class Digital_Book(models.Model):
     name = models.CharField(max_length=50, null=False)
-    author = models.CharField(max_length=50, null=False)
+    author = models.ForeignKey(to='authors.Author', on_delete=models.CASCADE)
     language = models.CharField(max_length=50, null=False)
     publisher = models.CharField(max_length=50, null=False)
     edition =  models.PositiveIntegerField()

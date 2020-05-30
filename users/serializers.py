@@ -23,6 +23,7 @@ class UserSerializer(serializers.ModelSerializer):
             'address_line_2',
             'phone_number',
             'description',
+            'balance',
         )
   
         extra_kwargs = {
@@ -42,6 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
         address_line_2 = self.data['address_line_2'],
         phone_number = self.data['phone_number'],
         description = self.data['description'],
+        balance = self.data['balance'],
      )
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
