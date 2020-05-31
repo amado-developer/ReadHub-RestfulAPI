@@ -9,7 +9,8 @@ class MagazinesSerializer(serializers.ModelSerializer):
             'name',
             'author',
             'volume',
-            'release_day',
+            'release_date',
             'number',
-            'quantity',
+            'cover',
+            'price'
         )

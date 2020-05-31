@@ -15,7 +15,8 @@ class Magazine(models.Model):
     volume          = models.CharField( max_length = 50, null = False )
     release_date    = models.DateField(auto_now=False)
     number          = models.CharField( max_length = 25, null = False )
-    quantity        = models.PositiveIntegerField( null = False )
+    cover = models.ImageField(null=False, default='')
+    price = models.DecimalField(decimal_places=2, max_digits=6, default=0.0 )
 
 class Meta:
     verbose_name = 'Magazine'

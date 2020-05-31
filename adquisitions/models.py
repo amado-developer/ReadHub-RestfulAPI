@@ -6,7 +6,7 @@ class Collection(models.Model):
     )
 
     book         = models.ForeignKey(
-        to='books.Book', on_delete=models.CASCADE, default=0,
+        to='digital_books.Digital_Book', on_delete=models.CASCADE, default=0,
     )
     description  = models.CharField(max_length=50, null=True )
 

@@ -30,6 +30,7 @@ from studyclassrooms.views import StudyClassrooomViewSets
 from digital_books.views import digital_bookViewSet
 from audio_books.views import Audio_BookViewSet
 from promotions.views import PromotionViewSet
+from electronicbookcollections.views import ElectronicBookCollectionViewset
 from equipment_assigments.views import Equipment_AssigmentViewSet
 from studyclassrooms_reservations.views import StudyClassrooms_ReservationViewSet
 from authors.views import AuthorViewSet;
@@ -60,7 +61,7 @@ router.register(r'^equipment-assigments', Equipment_AssigmentViewSet)
 router.register(r'^studyclassrooms-reservations', StudyClassrooms_ReservationViewSet)
 router.register(r'^authors',AuthorViewSet)
 router.register(r'^inventory', InventoryViewset)
-router.register(r'^collections/add-to-collection' ,CollectionViewset)
+router.register(r'^collections' ,CollectionViewset)
 router.register(r'^users', UserViewset)
 
 
