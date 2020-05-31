@@ -12,7 +12,6 @@ class MagazineViewSet(viewsets.ModelViewSet):
 
     @action(detail=False ,methods=['get'])
     def search(self, request):
-        print('si llega a django')
         search_filter = request.query_params['magazineName']
         magazines = Magazine.objects.filter(name__contains= search_filter)
         magazines_response = MagazinesSerializer(magazines, many = True).data
