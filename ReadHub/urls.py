@@ -72,8 +72,8 @@ urlpatterns = [
     # url(r'^api/v1/users/(?P<pk>\d+)/$', user_view, name="user"),
     # url(r'^api/v1/users/upload-profile-picture/(?P<pk>\d+)/$', upload_profile_picture, name="profile-pic"),
     url(r'^api-auth/', include('rest_framework.urls')),
-    url(r'^api/token-auth/', obtain_jwt_token),
-    url(r'^api/token-refresh/', refresh_jwt_token),
+    url(r'^api/v1/token-auth/', obtain_jwt_token),
+    url(r'^api/v1/token-refresh/', refresh_jwt_token),
     url(r'^api/v1/', include(router.urls)),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

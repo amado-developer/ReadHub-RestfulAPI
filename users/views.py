@@ -32,6 +32,7 @@ class UserViewset(viewsets.ModelViewSet):
                     'update': is_logged,
                     'add-to-balance': is_logged,
                     'get_user_data' : is_logged,
+                    'upload_profile_picture': is_logged,
                 }
             }
         ),
@@ -50,6 +51,19 @@ class UserViewset(viewsets.ModelViewSet):
     def get_user_data(self, request, pk=None):
          user = self.get_object()
          return Response(UserSerializer(user).data)
+
+    @action(detail=True, url_path='upload-profile-picture', methods=['patch', 'put'])
+    def upload_profile_picture(self, request, pk):
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    
+        profile_picture = request.data['profile_picture']
+        user.profile_picture = profile_picture
+        user.save()
+        # print(profile_picture)
+        return Response(str(profile_picture))
     
 # import base64
 # @api_view(['POST'])
