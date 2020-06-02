@@ -74,7 +74,7 @@ INSTALLED_APPS = [
     'inventories.apps.InventoriesConfig',
     'permissions.apps.PermissionsConfig',
     'digitalBooksPDF.apps.DigitalbookspdfConfig',
-
+    'bookloans.apps.BookloansConfig',
 ]
 
 AUTH_USER_MODEL = 'users.User'

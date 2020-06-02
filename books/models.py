@@ -22,9 +22,8 @@ class Book(models.Model):
     isbn            = models.CharField( max_length=25, null=False )
     edition         = models.PositiveIntegerField(null=False )
     release_date    = models.DateField(auto_now=False, null=False)
-    for_sale        = models.BooleanField(default= False, null= False)
-    price           = models.FloatField(default=0.0, null=True)
     quantity        = models.PositiveIntegerField(default=0)
+    cover           = models.ImageField(null=False, default='')
 
 class Meta:
     verbose_name = 'Book'

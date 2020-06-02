@@ -27,8 +27,7 @@ class BookSerializer(serializers.ModelSerializer):
             'edition',
             'release_date',
             'isbn',
-            'for_sale',
-            'price',
-            'quantity'
+            'quantity',
+            'cover',
         )
         
