@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'wishlists.apps.WishlistsConfig',
     'inventories.apps.InventoriesConfig',
     'permissions.apps.PermissionsConfig',
+    'digitalBooksPDF.apps.DigitalbookspdfConfig',
 
 ]
 

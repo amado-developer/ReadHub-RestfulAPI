@@ -37,6 +37,7 @@ from authors.views import AuthorViewSet;
 # from users.views import registration_view, users_view, upload_profile_picture, user_view
 from users.views import UserViewset
 from inventories.views import InventoryViewset
+from digitalBooksPDF.views import DigitalBookPDFViewSet
 from adquisitions.views import CollectionViewset
 from rest_framework_jwt.views import (
     obtain_jwt_token, 
@@ -63,7 +64,7 @@ router.register(r'^authors',AuthorViewSet)
 router.register(r'^inventory', InventoryViewset)
 router.register(r'^collections' ,CollectionViewset)
 router.register(r'^users', UserViewset)
-
+router.register(r'^digital-book-pdf', DigitalBookPDFViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
