@@ -21,5 +21,21 @@ class digital_bookViewSet(viewsets.ModelViewSet):
         books_response = digital_bookSerializer(books, many = True).data
         return Response(books_response)
         
+    @action(detail=True, methods=['patch', 'put'])
+    def rate(self, request, pk=None):
+        rating = request.query_params['rating']
+        book = self.get_object()
+        current_rating = book.rating
+        if current_rating > 0:
+            new_rating =  (float(current_rating) + float(rating))/2
+            book.rating = new_rating
+            book.save()
+        else:
+            new_rating = rating
+            book.rating = new_rating
+            book.save()
+        return Response(digital_bookSerializer(book).data)
 
+   
+    
 

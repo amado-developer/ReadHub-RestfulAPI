@@ -16,6 +16,7 @@ class digital_bookSerializer(serializers.ModelSerializer):
             'price',
             'doi',
             'cover',
+            'rating',
         )
 
     def get_author(self, obj):

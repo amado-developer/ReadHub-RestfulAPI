@@ -22,5 +22,6 @@ class Digital_Book(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=6)
     doi = models.CharField(max_length=50, null=False)
     cover = models.ImageField(null=False, default='')
+    rating = models.FloatField(null=True, default=0)
 
 
