@@ -10,8 +10,7 @@ type
 
 '''
 class Log(models.Model):
-    activity    = models.CharField(max_length=50, null=False),
-    type        = models.CharField(max_length=50, null=False),
+    activity    = models.CharField(max_length=50, null=False, default='')
     datetime    = models.DateTimeField(auto_now=True)
     user        = models.ForeignKey(
         to='users.User'

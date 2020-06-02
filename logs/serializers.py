@@ -16,7 +16,6 @@ class LogSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'activity',
-            'type',
             'datetime',
             'user'
         )
