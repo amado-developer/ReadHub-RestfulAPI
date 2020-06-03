@@ -4,5 +4,5 @@ number (varchar 50)
 '''
 
 class StudyClassrooom(models.Model):
-    number        = models.CharField(max_length=50, null=False)
+    number  = models.CharField(max_length=50, null=False)
     

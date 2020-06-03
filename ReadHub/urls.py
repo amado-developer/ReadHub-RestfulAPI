@@ -73,6 +73,7 @@ router.register(r'^books-loan', BookLoanViewSet)
 router.register(r'^equipment-loan', EquipmentLoanViewSet)
 router.register(r'^paymentoption', PaymentOptionViewSet)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'^api/v1/register', registration_view, name="register"),

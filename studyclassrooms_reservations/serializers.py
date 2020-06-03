@@ -5,12 +5,12 @@ from studyclassrooms_reservations.models import StudyClassrooms_Reservation
 class StudyClassroom_ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudyClassrooms_Reservation
-        fiels = (
+        fields = (
             'id',
-            'User',
+            'user',
             'study_classroom',
-            'enter_hour',
-            'return_hour',
+            'loan_date',
+            'devolution_date',
         )
 
 
