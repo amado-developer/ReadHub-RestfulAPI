@@ -40,7 +40,8 @@ from inventories.views import InventoryViewset
 from digitalBooksPDF.views import DigitalBookPDFViewSet
 from adquisitions.views import CollectionViewset
 from bookloans.views import BookLoanViewSet
-from logs.views import LogViewset
+from equipmentloans.views import EquipmentLoanViewSet
+from paymentoptions.views import PaymentOptionViewSet
 
 from rest_framework_jwt.views import (
     obtain_jwt_token, 
@@ -69,7 +70,8 @@ router.register(r'^collections' ,CollectionViewset)
 router.register(r'^users', UserViewset)
 router.register(r'^digital-book-pdf', DigitalBookPDFViewSet)
 router.register(r'^books-loan', BookLoanViewSet)
-router.register(r'^log', LogViewset)
+router.register(r'^equipment-loan', EquipmentLoanViewSet)
+router.register(r'^paymentoption', PaymentOptionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

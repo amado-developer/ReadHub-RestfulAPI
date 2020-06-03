@@ -75,6 +75,8 @@ INSTALLED_APPS = [
     'permissions.apps.PermissionsConfig',
     'digitalBooksPDF.apps.DigitalbookspdfConfig',
     'bookloans.apps.BookloansConfig',
+    'equipmentloans.apps.EquipmentloansConfig',
+    'paymentoptions.apps.PaymentoptionsConfig'
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -97,7 +99,7 @@ AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -106,8 +108,8 @@ REST_FRAMEWORK = {
 
 JWT_AUTH = {
 'JWT_ALLOW_REFRESH' : True,
-'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=2),
-'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=365),
+'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=24),
+'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
 
 MIDDLEWARE = [

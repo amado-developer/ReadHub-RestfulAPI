@@ -8,7 +8,6 @@ class EquipmentSerializer(serializers.ModelSerializer):
             'id',
             'name', 
             'type',
-            'transaction_date',
-            'quantity'
+            'quantity',
         )
 

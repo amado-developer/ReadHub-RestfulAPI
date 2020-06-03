@@ -10,7 +10,6 @@ quantity (integer)
 class Equipment(models.Model):
     name = models.CharField(max_length = 50, null = False)
     type = models.CharField(max_length = 50, null = False)
-    transaction_date = models.DateField(auto_now=False)
     quantity = models.PositiveIntegerField(null = False)
 
 class Meta:
