@@ -99,7 +99,7 @@ ariana.author = 'issue'
 ariana.volume = 3
 ariana.release_date = '2018-09-09'
 ariana.number = 2
-ariana.cover.save('ariana.jpg', File(opoen('./assets/ariana.jpg', 'rb')))
+ariana.cover.save('ariana.jpg', File(open('./assets/ariana.jpg', 'rb')))
 ariana.price = 15
 ariana.save()
 
