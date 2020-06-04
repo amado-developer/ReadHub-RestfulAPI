@@ -76,7 +76,8 @@ INSTALLED_APPS = [
     'digitalBooksPDF.apps.DigitalbookspdfConfig',
     'bookloans.apps.BookloansConfig',
     'equipmentloans.apps.EquipmentloansConfig',
-    'paymentoptions.apps.PaymentoptionsConfig'
+    'paymentoptions.apps.PaymentoptionsConfig',
+    'magazinesPDF.apps.MagazinespdfConfig'
 ]
 
 AUTH_USER_MODEL = 'users.User'
