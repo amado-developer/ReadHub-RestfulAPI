@@ -21,9 +21,8 @@ class BookLoanViewSet(viewsets.ModelViewSet):
     def return_book(self, request):
         book_id = request.query_params['book']
         user_id= request.query_params['user']
-        book = Book.objects.get(pk=book_id)
         user = User.objects.get(pk=user_id)
-        book_loan = BookLoan.objects.filter(user=user, book=book)
+        book_loan = BookLoan.objects.filter(pk=book_id)
         book_loan.delete()
         return Response({'Deleted': 'Book Deleted Succesfully'})
     
@@ -33,12 +32,11 @@ class BookLoanViewSet(viewsets.ModelViewSet):
         user_id= request.data['user']
         devoldate = request.data['devolution_date']
         user = User.objects.get(pk=user_id)
-
         for id in book_id:
             book = Book.objects.get(pk=id)
             book.quantity = book.quantity - 1
             book_loan = BookLoan()
-    
+            print(book.quantity)
             if book.quantity < 0:
                 return Response({'Sorry':'No available units'})
             else:
