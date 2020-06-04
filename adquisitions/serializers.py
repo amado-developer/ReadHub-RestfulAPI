@@ -35,7 +35,7 @@ class CollectionSerializer(serializers.ModelSerializer):
             "publisher": obj.book.publisher,
             "edition": obj.book.edition,
             "release_date": obj.book.release_date,
-            "doi": obj.book.doi,
+            "cui": obj.book.cui,
             "cover": obj.book.cover.url,
             }
 

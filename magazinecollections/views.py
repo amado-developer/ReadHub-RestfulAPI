@@ -22,8 +22,12 @@ class MagazineCollectionViewset(viewsets.ModelViewSet):
     @action(detail=False, url_path='add-to-magazine-collection', methods=['post'])
     def add_to_magazine_collection(self, request):
         userId = request.data['user']
+        ammount = request.data['ammount']
         for magid in request.data['magazine']:
             magazine_user = User.objects.get(pk= userId)
+            balance = magazine_user.balance
+            balance -= ammount
+            magazine_user.balance = balance
             magazine_user.save()
             magazine_object = Magazine.objects.get(pk= magid)
             collection = MagazineCollection()

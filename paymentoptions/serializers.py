@@ -11,5 +11,9 @@ class PaymentOptionSerializer(serializers.ModelSerializer):
             'card_holder',
             'card_number',
             'exp_date'
-
+            'cvv',
         )
+
+        extra_kwargs = {
+            'cvv' :{'write_only' : True },
+        }

@@ -20,8 +20,12 @@ class CollectionViewset(viewsets.ModelViewSet):
     @action(detail=False, url_path='add-to-collection', methods=['post'])
     def add_to_collection(self, request):
         userId = request.data['user']
+        ammount = request.data['ammount']
         for bookId in request.data['books']:
             book_user = User.objects.get(pk= userId)
+            balance = book_user.balance
+            balance -= ammount
+            book_user.balance = balance
             book_user.save()
             book_object = Digital_Book.objects.get(pk= bookId)
             collection = Collection()
@@ -44,5 +48,6 @@ class CollectionViewset(viewsets.ModelViewSet):
         collection = CollectionSerializer(books, many = True).data
         print(collection)
         return Response(collection)
+    
     
 

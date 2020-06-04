@@ -43,8 +43,11 @@ from bookloans.views import BookLoanViewSet
 from equipmentloans.views import EquipmentLoanViewSet
 from paymentoptions.views import PaymentOptionViewSet
 from magazinecollections.views import MagazineCollectionViewset
+<<<<<<< HEAD
 from magazinesPDF.views import MagazinePDFViewSet
 
+=======
+>>>>>>> f2d32b25e02a0f03c141a61414139cd9f84c0d53
 from rest_framework_jwt.views import (
     obtain_jwt_token, 
     refresh_jwt_token
@@ -74,10 +77,15 @@ router.register(r'^users', UserViewset)
 router.register(r'^digital-book-pdf', DigitalBookPDFViewSet)
 router.register(r'^books-loan', BookLoanViewSet)
 router.register(r'^equipment-loan', EquipmentLoanViewSet)
+<<<<<<< HEAD
 router.register(r'^paymentoption', PaymentOptionViewSet)
 router.register(r'^magazine-collections', MagazineCollectionViewset)
 router.register(r'^magazine-pdf', MagazinePDFViewSet)
 
+=======
+router.register(r'^payment-option', PaymentOptionViewSet)
+router.register(r'^magazine-collections', MagazineCollectionViewset)
+>>>>>>> f2d32b25e02a0f03c141a61414139cd9f84c0d53
 
 urlpatterns = [
     path('admin/', admin.site.urls),
