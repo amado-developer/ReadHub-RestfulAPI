@@ -5,7 +5,6 @@ from  equipments.serializers import EquipmentSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-
 class EquipmentViewSet(viewsets.ModelViewSet):
     queryset = Equipment.objects.all()
     serializer_class = EquipmentSerializer
@@ -16,4 +15,5 @@ class EquipmentViewSet(viewsets.ModelViewSet):
         equipments = Equipment.objects.filter(name__contains= search_filter)
         equipments_response = EquipmentSerializer(equipments, many = True).data
         return Response(equipments_response)
+
 

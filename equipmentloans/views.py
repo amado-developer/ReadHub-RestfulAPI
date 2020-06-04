@@ -11,7 +11,6 @@ class EquipmentLoanViewSet(viewsets.ModelViewSet):
     queryset = EquipmentLoan.objects.all()
     serializer_class = EquipmentLoanSerializer
 
-
     @action(detail=False, url_path='get-loans', methods=['get'])
     def get_equipment_loans(self, request):
         user_id= request.query_params['user']
@@ -20,20 +19,15 @@ class EquipmentLoanViewSet(viewsets.ModelViewSet):
 
         return Response(EquipmentLoanSerializer(equipment_loan, many=True).data)
 
-
-
     @action(detail=False, url_path='return-equipment', methods=['patch'])
     def return_equipment(self, request):
-
-       # user_id= request.query_params['user']
-        #user = User.objects.get(pk=user_id)
-
+        
         equipment_id = request.query_params['equipment']
         print(equipment_id)
         equipment_loan_object = EquipmentLoan.objects.filter(pk=equipment_id).values()
         id = list(equipment_loan_object)[0]['equipment_id']
-
         print(id)
+        print(equipment_loan_object)
         equipment = Equipment.objects.get(pk=id)
         
     
@@ -47,9 +41,9 @@ class EquipmentLoanViewSet(viewsets.ModelViewSet):
 
 
 
+
     @action(detail=False, url_path='pick-equipment', methods=['post'])
     def pick_equipment(self, request):
-        print(request.data)
         equipment_id = request.data['equipment']
         user_id= request.data['user']
         devoldate = request.data['devolution_date']
@@ -70,9 +64,6 @@ class EquipmentLoanViewSet(viewsets.ModelViewSet):
                 equipment_loan.save()
         return Response({'created': 'Book loan created Succesfully'})
 
-
-
-        
  
 
 

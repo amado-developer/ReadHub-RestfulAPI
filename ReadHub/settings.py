@@ -58,8 +58,8 @@ INSTALLED_APPS = [
     'audio_books.apps.AudioBooksConfig',
     'promotions.apps.PromotionsConfig',
     'studyclassrooms_reservations.apps.StudyclassroomsReservationsConfig',
+    'magazinesPDF.apps.MagazinespdfConfig',
 
-  
     'books.apps.BooksConfig',
     'authors.apps.AuthorsConfig',
     'users.apps.UsersConfig',
@@ -76,8 +76,7 @@ INSTALLED_APPS = [
     'digitalBooksPDF.apps.DigitalbookspdfConfig',
     'bookloans.apps.BookloansConfig',
     'equipmentloans.apps.EquipmentloansConfig',
-    'paymentoptions.apps.PaymentoptionsConfig',
-    'magazinesPDF.apps.MagazinespdfConfig'
+    'paymentoptions.apps.PaymentoptionsConfig'
 ]
 
 AUTH_USER_MODEL = 'users.User'

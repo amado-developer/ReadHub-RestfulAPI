@@ -10,7 +10,7 @@ class MagazineViewSet(viewsets.ModelViewSet):
     queryset = Magazine.objects.all()
     serializer_class = MagazinesSerializer
 
-    @action(detail=False ,methods=['get'],url_path='get-magazine-collection')
+    @action(detail=False ,methods=['get'])
     def search(self, request):
         search_filter = request.query_params['magazineName']
         magazines = Magazine.objects.filter(name__contains= search_filter)

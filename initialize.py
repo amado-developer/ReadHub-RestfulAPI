@@ -1,8 +1,11 @@
 from users.models import User
 from authors.models import Author
+from magazines.models import Magazine
+from equipments.models import Equipment
 from digital_books.models import Digital_Book
 from django.core.files import File
 
+###USERS####
 dummy = User()
 dummy.email = '1@1.com'
 dummy.set_password('1234')
@@ -40,6 +43,8 @@ sara.address_line_1 = 'Su casa hehe'
 sara.phone_number = '87654321'
 sara.save()
 
+
+###AUTHORS###
 jkrowling = Author()
 jkrowling.first_name = 'Joanne'
 jkrowling.last_name = 'Rowling'
@@ -49,6 +54,8 @@ jkrowling.pseudonym = 'J.K. Rowling'
 jkrowling.nationality = 'British'
 jkrowling.save()
 
+
+###BOOKS###
 hp1 = Digital_Book()
 hp1.name = 'Harry Potter and the Philosopher''s Stone'
 hp1.author = jkrowling
@@ -84,3 +91,20 @@ hp3.release_date = '1996-1-1'
 hp3.doi = '121-141'
 hp3.cover.save('hp3-EN.jpg', File(open('./assets/hp3En.jpg', 'rb')))
 hp3.save()
+
+###Magazines###
+ariana = Magazine()
+ariana.name = 'Girlfriend'
+ariana.author = 'issue'
+ariana.volume = 3
+ariana.release_date = '2018-09-09'
+ariana.number = 2
+ariana.cover.save('ariana.jpg', File(opoen('./assets/ariana.jpg', 'rb')))
+ariana.price = 15
+ariana.save()
+
+#Equipment
+
+#BooksPDF
+
+#MagazinePDF
