@@ -71,7 +71,7 @@ router.register(r'^users', UserViewset)
 router.register(r'^digital-book-pdf', DigitalBookPDFViewSet)
 router.register(r'^books-loan', BookLoanViewSet)
 router.register(r'^equipment-loan', EquipmentLoanViewSet)
-router.register(r'^paymentoption', PaymentOptionViewSet)
+router.register(r'^payment-option', PaymentOptionViewSet)
 
 
 urlpatterns = [

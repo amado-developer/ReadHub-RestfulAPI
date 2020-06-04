@@ -12,17 +12,49 @@ class PaymentOptionViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentOptionSerializer
 
 
-    @action(detail=False, url_path='change-payment-option', methods=['patch'])
-    def change_paymentOption(self, request):
-        user_id= request.query_params['user']
-        user = User.objects.get(pk=user_id)
-        try:
-            pay = PaymentOption.objects.get(pk=user)
+    @action(detail=False, url_path='change-payment-option', methods=['post', 'patch'])
+    def change_payment_option(self, request):
+        card_holder = request.data['cardHolder']
+        card_number = request.data['cardNumber']
+        exp_date = request.data['expDate']
+        cvv = request.data['cvv']
+
+        if request.method == 'POST':
+            user_id = request.query_params['user']
+            user = User.objects.get(pk=user_id)
+            pay = PaymentOption()
+            pay.user = user
+            pay.card_holder = card_holder
+            pay.card_number = card_number
+            pay.exp_date = exp_date
+            pay.cvv = cvv
             pay.save()
+            return Response({"Succesfully Added: Payment option"})
+        else:
+            try:
+                user_id= request.query_params['user']
+                user = User.objects.get(pk=user_id)
+                pay = PaymentOption.objects.get(user=user)
+                pay.card_holder = card_holder
+                pay.card_number = card_number
+                pay.exp_date = exp_date
+                pay.cvv = cvv
+                pay.save()
 
-        except User.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            except User.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response({})
+    
+    @action(detail=False, url_path='get-payment-option', methods=['get'])
+    def get_payment_option(self, request):
+        user_id = request.query_params['user']
+        user = User.objects.get(pk=user_id)
+        pay = PaymentOption.objects.filter(user=user).values()
+    
+        return Response(pay)
 
+
+        
 
 
 

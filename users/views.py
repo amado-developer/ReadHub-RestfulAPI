@@ -33,6 +33,7 @@ class UserViewset(viewsets.ModelViewSet):
                     'add-to-balance': is_logged,
                     'get_user_data' : is_logged,
                     'upload_profile_picture': is_logged,
+                    'add_to_balance': is_logged,
                 }
             }
         ),
@@ -41,7 +42,7 @@ class UserViewset(viewsets.ModelViewSet):
     @action(detail=True, url_path='add-to-balance', methods=['patch'])
     def add_to_balance(self, request, pk=None):
         user = self.get_object()
-        user.balance = request.data['balance']
+        user.balance += float(request.data['quantity'])
         user.save()
         return Response({
             'status': 'Balance Added'
