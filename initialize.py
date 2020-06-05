@@ -115,20 +115,20 @@ hp3.edition = 1
 hp3.price = 19.99
 hp3.release_date = '1996-1-1'
 hp3.doi = '121-241'
-hp3.cover.save('hp3-EN.jpg', File(open('./assets/hp3En.jpg', 'rb')))
+hp3.cover.save('hp3-EN.jpg', File(open('./assets/hp3EN.jpg', 'rb')))
 hp3.save()
 
 narnia1 = Digital_Book()
-hp3.name = 'The Chronicles of Narnia 1'
-hp3.author = cslewis
-hp3.language = 'EN'
-hp3.publisher = 'Bloomsburry'
-hp3.edition = 3
-hp3.price = 12
-hp3.release_date = '1978-1-1'
-hp3.doi = '821-234'
-hp3.cover.save('narnia1.jpg', File(open('./assets/narnia1.jpg', 'rb')))
-hp3.save()
+narnia1.name = 'The Chronicles of Narnia 1'
+narnia1.author = cslewis
+narnia1.language = 'EN'
+narnia1.publisher = 'Bloomsburry'
+narnia1.edition = 3
+narnia1.price = 12
+narnia1.release_date = '1978-1-1'
+narnia1.doi = '821-234'
+narnia1.cover.save('narnia1.jpg', File(open('./assets/narnia1.jpg', 'rb')))
+narnia1.save()
 
 ###Magazines###
 ariana = Magazine()
@@ -166,43 +166,53 @@ headphone = Equipment()
 headphone.name = 'Headphone'
 headphone.type = 'Audio'
 headphone.quantity = 30
+headphone.save()
 
 projector = Equipment()
 projector.name = 'Projector'
 projector.type = 'Video'
 projector.quantity = 10
+projector.save()
 
 ipad = Equipment()
 ipad.name = 'iPad'
 ipad.type = 'Electronic'
 ipad.quantity = 8
+ipad.save()
 
 #BooksPDF
 hp1PDF =  DigitalBookPDF()
 hp1PDF.book = hp1
 hp1PDF.pdf.save('hp1.pdf', File(open('./assets/hp1.pdf', 'rb')))
+hp1PDF.save()
 
 hp2PDF =  DigitalBookPDF()
-hp2PDF.book = hp1
+hp2PDF.book = hp2
 hp2PDF.pdf.save('hp2.pdf', File(open('./assets/hp2.pdf', 'rb')))
+hp2PDF.save()
 
 hp3PDF =  DigitalBookPDF()
-hp3PDF.book = hp1
+hp3PDF.book = hp3
 hp3PDF.pdf.save('hp3.pdf', File(open('./assets/hp3.pdf', 'rb')))
+hp3PDF.save()
 
 narnia1PDF =  DigitalBookPDF()
-narnia1PDF.book = hp1
+narnia1PDF.book = narnia1
 narnia1PDF.pdf.save('narnia1.pdf', File(open('./assets/narnia1.pdf', 'rb')))
+narnia1PDF.save()
 
 #MagazinePDF
 m1 =  MagazinesPDF()
 m1.magazine = ariana
 m1.pdf.save('No_45.pdf', File(open('./assets/No_45.pdf', 'rb')))
+m1.save()
 
 m2 =  MagazinesPDF()
-m2.magazine = ariana
+m2.magazine = victoria
 m2.pdf.save('No_46.pdf', File(open('./assets/No_46.pdf', 'rb')))
+m2.save()
 
 m3 =  MagazinesPDF()
-m3.magazine = ariana
+m3.magazine = liz
 m3.pdf.save('No_48.pdf', File(open('./assets/No_48.pdf', 'rb')))
+m3.save()

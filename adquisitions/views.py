@@ -32,8 +32,8 @@ class CollectionViewset(viewsets.ModelViewSet):
                     'retrieve': False,
                     'destroy': False,
                     'update': False,
-                    'add_to_collection': False,
-                    'get_collection' : False,
+                    'add_to_collection': is_logged,
+                    'get_collection' : is_logged,
                 }
             }
         ),
