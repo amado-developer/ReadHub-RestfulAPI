@@ -10,9 +10,7 @@ from permissions.services import APIPermissionClassFactory
 from rest_framework.decorators import action
 
 def is_logged(user, obj, request):
-    # print(obj.email)
     return user.email == obj.email
-    # return True
 
 class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()

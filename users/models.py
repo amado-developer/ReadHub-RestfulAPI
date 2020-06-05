@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager, UserMan
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, first_name, last_name, profile_picture, age, gender, occupation
-    , address_line_1, address_line2, phone_number, description, password, password2, balance):
+    , address_line_1, address_line2, phone_number, description, password, password2, balance, is_admin):
         if password != password2:
             raise ValueError('passwords does not match')
         else:
@@ -21,10 +21,11 @@ class CustomUserManager(BaseUserManager):
                 description = description,
                 balance = balance,
             )
-
+            user.is_admin = is_admin
             user.set_password(password)
             # user.save()
             return user
+
 
 class User(AbstractBaseUser):
     email           = models.EmailField(unique=True)
@@ -39,6 +40,8 @@ class User(AbstractBaseUser):
     phone_number    = models.CharField(max_length=50, null=False)
     description     = models.CharField(max_length=50, null=True)
     balance         = models.FloatField(null=True, default=0.0)
+    is_admin = models.BooleanField(default=False)
+
 
     USERNAME_FIELD = 'email'
     objects = CustomUserManager()

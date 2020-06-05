@@ -11,11 +11,33 @@ from digital_books.models import Digital_Book
 from digital_books.serializers import digital_bookSerializer
 from django.http.response import JsonResponse
 import json
+from permissions.services import APIPermissionClassFactory
+
+def is_logged(user, obj, request):
+    return user.email == obj.email
 
 class CollectionViewset(viewsets.ModelViewSet):
     queryset = Collection.objects.all()
     serializer_class = CollectionSerializer
 
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='UserPermission',
+            permission_configuration={
+                'base': {
+                    'create': True,
+                    'list': False,
+                },
+                'instance': {
+                    'retrieve': False,
+                    'destroy': False,
+                    'update': False,
+                    'add_to_collection': False,
+                    'get_collection' : False,
+                }
+            }
+        ),
+    )
 
     @action(detail=False, url_path='add-to-collection', methods=['post'])
     def add_to_collection(self, request):

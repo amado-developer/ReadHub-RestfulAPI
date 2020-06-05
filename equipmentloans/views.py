@@ -7,9 +7,37 @@ from users.models import User
 from equipments.models import Equipment
 from rest_framework.response import Response
 
+from permissions.services import APIPermissionClassFactory
+
+def is_admin(user, request):
+    return user.is_admin == True
+
+def is_logged(user, obj, request):
+    return user.email == obj.email
+
 class EquipmentLoanViewSet(viewsets.ModelViewSet):
     queryset = EquipmentLoan.objects.all()
     serializer_class = EquipmentLoanSerializer
+
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='UserPermission',
+            permission_configuration={
+                'base': {
+                    'create': is_admin,
+                    'list': True,
+                },
+                'instance': {
+                    'retrieve': is_logged,
+                    'destroy': False,
+                    'update': False,
+                    'get_equipment_loans': is_logged,
+                    'return_equipment': is_logged,
+                    'pick_equipment': is_logged,
+                }
+            }
+        ),
+    )
 
     @action(detail=False, url_path='get-loans', methods=['get'])
     def get_equipment_loans(self, request):
@@ -23,14 +51,10 @@ class EquipmentLoanViewSet(viewsets.ModelViewSet):
     def return_equipment(self, request):
         
         equipment_id = request.query_params['equipment']
-        print(equipment_id)
         equipment_loan_object = EquipmentLoan.objects.filter(pk=equipment_id).values()
         id = list(equipment_loan_object)[0]['equipment_id']
-        print(id)
-        print(equipment_loan_object)
         equipment = Equipment.objects.get(pk=id)
         
-    
         equipment.quantity = equipment.quantity + 1
        
         equipment_loan = EquipmentLoan.objects.filter(pk=equipment_id)

@@ -8,10 +8,36 @@ from digital_books.models import Digital_Book
 from rest_framework.response import Response
 from adquisitions.models import Collection
 from adquisitions.serializers import CollectionSerializer
+
+from permissions.services import APIPermissionClassFactory
+
+def is_admin(user, request):
+    return user.is_admin == True
+
+def is_logged(user, obj, request):
+    return user.email == obj.email
+
 class DigitalBookPDFViewSet(viewsets.ModelViewSet):
     queryset = DigitalBookPDF.objects.all()
     serializer_class = DigitalBookPDFSerializer
 
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='UserPermission',
+            permission_configuration={
+                'base': {
+                    'create': is_admin,
+                    'list': True,
+                },
+                'instance': {
+                    'retrieve': is_logged,
+                    'destroy': False,
+                    'update': False,
+                    'get_pdf': is_logged,
+                }
+            }
+        ),
+    )
 
     @action(detail=False, url_path='get-pdf', methods=['get'])
     def get_pdf(self, request):

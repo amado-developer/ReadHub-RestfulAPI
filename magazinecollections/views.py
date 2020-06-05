@@ -15,10 +15,37 @@ from magazines.serializers import MagazinesSerializer
 from django.http.response import JsonResponse
 import json
 
+from permissions.services import APIPermissionClassFactory
+
+def is_admin(user, request):
+    return user.is_admin == True
+
+def is_logged(user, obj, request):
+    return user.email == obj.email
+
 class MagazineCollectionViewset(viewsets.ModelViewSet):
     queryset = MagazineCollection.objects.all()
     serializer_class = MagazineCollectionSerializer
     
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='UserPermission',
+            permission_configuration={
+                'base': {
+                    'create': is_admin,
+                    'list': True,
+                },
+                'instance': {
+                    'retrieve': is_logged,
+                    'destroy': False,
+                    'update': False,
+                    'add_to_magazine_collection': is_logged,
+                    'get_magazine_collection': is_logged,
+                }
+            }
+        ),
+    )
+
     @action(detail=False, url_path='add-to-magazine-collection', methods=['post'])
     def add_to_magazine_collection(self, request):
         userId = request.data['user']
@@ -45,5 +72,4 @@ class MagazineCollectionViewset(viewsets.ModelViewSet):
         user = User.objects.get(pk = userId)
         magazines = MagazineCollection.objects.filter(user = user)
         collection = MagazineCollectionSerializer(magazines, many = True).data
-        print(collection)
         return Response(collection)

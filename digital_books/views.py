@@ -6,12 +6,36 @@ from digital_books.serializers import digital_bookSerializer
 from rest_framework.response import Response
 from django.http.request import QueryDict
 from rest_framework.utils import json
+from permissions.services import APIPermissionClassFactory
 
+def is_admin(user, request):
+    return user.is_admin == True
+
+def is_logged(user, obj, request):
+    return user.email == obj.email
 
 class digital_bookViewSet(viewsets.ModelViewSet):
     queryset = Digital_Book.objects.all()
     serializer_class = digital_bookSerializer
 
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='UserPermission',
+            permission_configuration={
+                'base': {
+                    'create': is_admin,
+                    'list': True,
+                },
+                'instance': {
+                    'retrieve': is_logged,
+                    'destroy': False,
+                    'update': False,
+                    'search': is_logged,
+                    'rate': is_logged
+                }
+            }
+        ),
+    )
 
     @action(detail=False ,methods=['get'])
     def search(self, request):

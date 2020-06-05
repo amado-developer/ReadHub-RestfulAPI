@@ -24,6 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
             'phone_number',
             'description',
             'balance',
+            'is_admin',
         )
   
         extra_kwargs = {
@@ -50,6 +51,7 @@ class UserSerializer(serializers.ModelSerializer):
 
         if password != password2:
             raise serializers.ValidationError({'password' : 'Passwords must match'})
+        user.is_admin = self.data['is_admin']
         user.set_password(password)
     
         user.save() 

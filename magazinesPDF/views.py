@@ -10,11 +10,35 @@ from magazines.models import Magazine
 from magazinecollections.models import MagazineCollection
 from magazinecollections.serializers import MagazineCollectionSerializer
 
+from permissions.services import APIPermissionClassFactory
+
+def is_admin(user, request):
+    return user.is_admin == True
+
+def is_logged(user, obj, request):
+    return user.email == obj.email
 
 class MagazinePDFViewSet(viewsets.ModelViewSet):
     queryset = MagazinesPDF.objects.all()
     serializer_class = MagazinePDFSerializer
 
+    permission_classes = (
+        APIPermissionClassFactory(
+            name='UserPermission',
+            permission_configuration={
+                'base': {
+                    'create': is_admin,
+                    'list': True,
+                },
+                'instance': {
+                    'retrieve': is_logged,
+                    'destroy': False,
+                    'update': False,
+                    'get_magazine_pdf': is_logged,
+                }
+            }
+        ),
+    )
 
     @action(detail=False, url_path='get-magazine-pdf', methods=['get'])
     def get_magazine_pdf(self, request):
