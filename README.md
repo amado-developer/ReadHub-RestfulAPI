@@ -1,6 +1,6 @@
 # ReadHub API
 
-One Paragraph of project description goes here
+Restful API for our React-Native / Redux project for the web course. UVG 2020
 
 ## Getting Started
 
@@ -12,6 +12,9 @@ Things you need to install the software and how to install them
 
 ```
 Clone or download repository https://github.com/amado-developer/ReadHub-RestfulAPI.git
+```
+```
+Create a data base in postgres named ReadHub
 ```
 
 ### Installing
@@ -47,9 +50,33 @@ virtualenv env
 If you have any problem you can see this documentation:\
 https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/
 
-## Running the tests
+Activate your virtual enviroment in your terminal from the path where you have the project
 
-Explain how to run the automated tests for this system
+```
+source env/bin/activate
+```
+Install all the requiirements needed
+```
+pip3 install -r requirements.txt 
+```
+Make migrations
+
+```
+python3 manage.py makemigations
+```
+```
+python3 manage.py migrate
+```
+Initialize data for the data base
+
+```
+python manage.py shell < initialize.py
+```
+
+## Running server
+```
+python3 manage.py runserver
+```
 
 ### Break down into end to end tests
 
