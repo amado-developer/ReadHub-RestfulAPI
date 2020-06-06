@@ -72,13 +72,18 @@ python3 manage.py migrate
 ```
 python manage.py shell < initialize.py
 ```
+### Run server
+```
+python3 manage.py runserver
+```
 
 
 
 ## Authors
 
 * **Amado Garcia** -  - [amado-developer](https://github.com/amado-developer)
-* **Sara Zavala ** -  - [saritazavala](https://github.com/saritazavala)
+* **Sara Zavala** -  - [saritazavala](https://github.com/saritazavala)
+
 
 
 
