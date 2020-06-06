@@ -50,12 +50,12 @@ virtualenv env
 If you have any problem you can see this documentation:\
 https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/
 
-Activate your virtual enviroment in your terminal from the path where you have the project
+**Activate your virtual enviroment in your terminal from the path where you have the project**
 
 ```
 source env/bin/activate
 ```
-Install all the requiirements needed
+Install all the requirements needed
 ```
 pip3 install -r requirements.txt 
 ```
@@ -72,7 +72,7 @@ python3 manage.py migrate
 ```
 python manage.py shell < initialize.py
 ```
-### Run server
+## Run server
 ```
 python3 manage.py runserver
 ```
