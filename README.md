@@ -74,9 +74,54 @@ python manage.py shell < initialize.py
 ```
 ## Run server
 ```
-python3 manage.py runserver
+python3 manage.py runserver 
 ```
 
+## Models
+<ul>
+    <li>Adquisitions (digital books collections)</li>
+<li>Authors</li>
+<li>books</li>
+<li>comments</li>
+<li>digital books</li>
+<li>equipment</li>
+<li>equipment loans</li>
+<li>magazines</li>
+<li>magazines collection</li>
+<li>pdf Book</li>
+<li>pdf magazines</li>
+<li>user</li>
+<li>Book</li>
+<li>books loan</li>
+</ul>
+
+## Endpoints
+<ul>
+    <li>add to collection</li>
+<li>get collection</li>
+<li>search</li>
+<li>search (magazines)</li> 
+<li>upload profile picture</li>
+<li>add to balance </li>
+<li>change payment options</li>
+<li>get payment options</li>
+<li>search book</li>
+<li>loan a book</li>
+<li>return a book</li>
+<li>getLoan</li>
+<li>search book</li>
+<li>get pdf book</li>
+<li>search equipment</li>
+<li>loan a equipment</li>
+<li>return a equipment</li>
+<li>get equipment loan</li>
+<li>add to magazine collection </li>
+<li>get magazine collection </li>
+<li>get pdf magazine </li>
+
+
+
+</ul>
 
 
 ## Authors
