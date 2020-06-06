@@ -46,7 +46,7 @@ class CollectionViewset(viewsets.ModelViewSet):
         for bookId in request.data['books']:
             book_user = User.objects.get(pk= userId)
             balance = book_user.balance
-            balance -= ammount
+            balance -= float(ammount)
             book_user.balance = balance
             book_user.save()
             book_object = Digital_Book.objects.get(pk= bookId)

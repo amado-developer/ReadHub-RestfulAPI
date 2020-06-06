@@ -53,7 +53,7 @@ class MagazineCollectionViewset(viewsets.ModelViewSet):
         for magid in request.data['magazine']:
             magazine_user = User.objects.get(pk= userId)
             balance = magazine_user.balance
-            balance -= ammount
+            balance -= float(ammount)
             magazine_user.balance = balance
             magazine_user.save()
             magazine_object = Magazine.objects.get(pk= magid)

@@ -6,6 +6,7 @@ from digital_books.models import Digital_Book
 from equipments.models import Equipment
 from digitalBooksPDF.models import DigitalBookPDF
 from magazinesPDF.models import MagazinesPDF
+from books.models import Book
 from django.core.files import File
 
 ###ADMIN###
@@ -216,3 +217,26 @@ m3 =  MagazinesPDF()
 m3.magazine = liz
 m3.pdf.save('No_48.pdf', File(open('./assets/No_48.pdf', 'rb')))
 m3.save()
+
+#P Books
+pbook1 = Book()
+pbook1.name = 'Las cronicas de Narnia 1'
+pbook1.author = cslewis
+pbook1.publisher = 'Salamandra'
+pbook1.language = 'ES'
+pbook1.isbn = '123-456'
+pbook1.edition = 3
+pbook1.release_date = '2000-1-1'
+pbook1.quantity = 5
+pbook1.cover.save('narnialibro1.jgp', File(open('./assets/narnialibro1.jpg', 'rb')))
+
+pbook2 = Book()
+pbook2.name = 'Las cronicas de Narnia 2'
+pbook2.author = cslewis
+pbook2.publisher = 'Salamandra'
+pbook2.language = 'ES'
+pbook2.isbn = '987-456'
+pbook2.edition = 2
+pbook2.release_date = '2001-1-1'
+pbook2.quantity = 3
+pbook2.cover.save('narnialibro2.jgp', File(open('./assets/narnialibro2.jpg', 'rb')))

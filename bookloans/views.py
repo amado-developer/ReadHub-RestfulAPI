@@ -20,9 +20,13 @@ class BookLoanViewSet(viewsets.ModelViewSet):
     @action(detail=False, url_path='return-book', methods=['patch'])
     def return_book(self, request):
         book_id = request.query_params['book']
-        user_id= request.query_params['user']
-        user = User.objects.get(pk=user_id)
+        book_loan_object = BookLoan.objects.filter(pk=book_id).values()
+        id = list(book_loan_object)[0]['book_id']
+        book = Book.objects.get(pk=id)
+        book.quantity = book.quantity + 1
+       
         book_loan = BookLoan.objects.filter(pk=book_id)
+        book.save()
         book_loan.delete()
         return Response({'Deleted': 'Book Deleted Succesfully'})
     
