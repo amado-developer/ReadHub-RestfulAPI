@@ -1,36 +1,51 @@
-# Project Title
+# ReadHub API
 
 One Paragraph of project description goes here
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Things you need to install the software and how to install them
 
 ```
-Give examples
+Clone or download repository https://github.com/amado-developer/ReadHub-RestfulAPI.git
 ```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
+**Configure Data base:**\
+This would be possible by changing the DATABASES dictionary. Normally you only have to change the password\
+**Direction of document:** Your-Directory\ReadHub-RestfulAPI\ReadHub
+
 
 ```
-Give the example
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ReadHub',
+        'USER': 'postgres',
+        'PASSWORD': 'Anikalinda11',
+        'HOST' : 'localhost',
+        'PORT' : '5432',
+
+    }
+}
+
 ```
 
-And repeat
+Create a python3 virtual enviroment
 
 ```
-until finished
+virtualenv env
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+If you have any problem you can see this documentation:\
+https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/
 
 ## Running the tests
 
