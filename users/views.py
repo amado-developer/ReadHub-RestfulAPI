@@ -21,7 +21,7 @@ class UserViewset(viewsets.ModelViewSet):
             name='UserPermission',
             permission_configuration={
                 'base': {
-                    'create': True,
+                    'create': False,
                     'list': False,
                 },
                 'instance': {
@@ -32,6 +32,7 @@ class UserViewset(viewsets.ModelViewSet):
                     'get_user_data' : is_logged,
                     'upload_profile_picture': is_logged,
                     'add_to_balance': is_logged,
+                    'sign_up': True,
                 }
             }
         ),
@@ -63,7 +64,28 @@ class UserViewset(viewsets.ModelViewSet):
         user.save()
         # print(profile_picture)
         return Response(str(profile_picture))
-    
+
+    @action(detail=False, url_path = 'signup', methods = ['POST'])
+    def sign_up(self, request):
+        print(request)
+
+        usuario = User(
+            email=request.data['email'], 
+            first_name=request.data['first_name'],
+            last_name=request.data['last_name'],
+            age = request.data['age'],
+            gender = request.data['gender'],
+            occupation = request.data['occupation'],
+            address_line_1 = request.data['address_line_1'],
+            address_line_2 = request.data['address_line_2'],
+            phone_number = request.data['phone_number'],
+
+        )
+        usuario.set_password(request.data['password'])
+        usuario.save()
+        return Response({
+            'status':'ok'
+        })
 # import base64
 # @api_view(['POST'])
 # @permission_classes([permissions.AllowAny])
